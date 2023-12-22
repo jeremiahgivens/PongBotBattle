@@ -1,0 +1,4 @@
+.header {
+    color: rgb(204, 30, 30);
+    font-size: 24px;
+}
