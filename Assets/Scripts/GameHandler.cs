@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class PaddleController : MonoBehaviour
+public class GameHandler : MonoBehaviour
 {
     public List<GameObject> m_Paddles;
     public GameObject m_Ball;

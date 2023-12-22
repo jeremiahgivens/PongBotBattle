@@ -2,3 +2,13 @@
     color: rgb(204, 30, 30);
     font-size: 24px;
 }
+
+.unity-button {
+    align-self: flex-start;
+    left: auto;
+    top: auto;
+    bottom: auto;
+    position: absolute;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
