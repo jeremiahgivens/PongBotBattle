@@ -19,22 +19,45 @@ public class PongBot
     {
         int action = 0;
         float val = Random.value;
-        if (val <= (float)percentFollowBest / 100f)
+        
+        // Find which action has the highest value in the Q table.
+        float max = 0;
+        int maxIndex = -2;
+        for (int a = -1; a <= 1; a++)
         {
-            float max = float.MinValue;
-            int maxIndex = 0;
-            for (int a = -1; a <= 1; a++)
+            float qValue = m_QTable[(state, a)];
+            if (qValue > max)
             {
-                float qValue = m_QTable[(state, a)];
-                if (qValue > max)
-                {
-                    max = qValue;
-                    maxIndex = a;
-                }
+                max = qValue;
+                maxIndex = a;
             }
         }
-        Random.Range(-1, 1);
 
+        // If the index is -2, that means they are all zero, so there is not a max.
+        if (maxIndex == -2)
+        {
+            maxIndex = Random.Range(-1, 1);
+        }
+        
+        if (val <= (float)percentFollowBest / 100f)
+        {
+            action = maxIndex;
+        }
+        else
+        {
+            List<int> actions = new List<int>();
+
+            for (int a = -1; a <= 1; a++)
+            {
+                if (a != maxIndex)
+                {
+                    actions.Add(a);
+                }
+            }
+            
+            action = actions[Random.Range(0, 1)];
+        }
+        
         return action;
     }
 
